@@ -4,88 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Natural Language Processing - BAI601</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: url('ai_background.jpg') no-repeat center center/cover;
-            color: white;
-            text-align: center;
-            padding: 20px;
-        }
-        .container {
-            max-width: 900px;
-            margin: auto;
-            background: rgba(44, 62, 80, 0.9);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0px 0px 15px #e91e63;
-        }
-        h1, h2 {
-            color: #e91e63;  /* Pink */
-        }
-        h3 {
-            color: #f39c12;  /* Gold */
-        }
-        .upload-form {
-            margin-top: 20px;
-            animation: fadeIn 1s ease-in-out;
-        }
-        input, button, textarea {
-            padding: 12px;
-            margin: 10px;
-            border-radius: 8px;
-            border: none;
-            width: 80%;
-            font-size: 16px;
-        }
-        input, textarea {
-            background: #2C3E50; /* Dark Slate */
-            color: white;
-            text-align: center;
-        }
-        button {
-            background-color: #e91e63;  /* Pink */
-            color: white;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        button:hover {
-            background-color: #ec407a;  /* Lighter Pink */
-            transform: scale(1.05);
-        }
-        .footer {
-            margin-top: 20px;
-            font-size: 14px;
-            color: #ccc;
-        }
-        .student-corner {
-            margin-top: 30px;
-            background: #8e44ad;  /* Purple */
-            padding: 20px;
-            border-radius: 10px;
-        }
-        .student-corner h4 {
-            color: white;
-        }
-        .submissions ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        .submissions li {
-            background-color: #34495e;  /* Dark Grey */
-            margin: 5px 0;
-            padding: 10px;
-            border-radius: 8px;
-            color: #ecf0f1;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
     <div class="container">
@@ -93,65 +12,23 @@
         <h2>Professor: R. Geetha</h2>
         <p>Welcome to the NLP Notes & Assignment Submission Portal</p>
 
-        <!-- Upload Notes Section -->
         <h3>Upload Notes</h3>
-        <form class="upload-form" action="/upload_notes" method="POST" enctype="multipart/form-data">
+        <form action="{{ url_for('upload_notes') }}" method="POST" enctype="multipart/form-data">
             <input type="file" name="notes" accept=".pdf" required><br>
             <button type="submit">Upload Notes</button>
         </form>
 
-        <!-- Upload Assignment Section -->
         <h3>Upload Assignment</h3>
-        <form class="upload-form" action="/upload_assignment" method="POST" enctype="multipart/form-data">
-            <input type="text" name="name" placeholder="Enter Your Name" required><br>
-            <input type="text" name="usn" placeholder="Enter Your USN" required><br>
+        <form action="{{ url_for('upload_assignment') }}" method="POST" enctype="multipart/form-data">
+            <input type="text" name="name" placeholder="Name" required><br>
+            <input type="text" name="usn" placeholder="USN" required><br>
             <input type="text" name="subject_code" value="BAI601" readonly><br>
             <input type="file" name="assignment" accept=".pdf" required><br>
             <button type="submit">Upload Assignment</button>
         </form>
 
-        <!-- View Your Submissions Section -->
-        <h3>View Your Submissions</h3>
-        <form action="/view_submissions" method="POST">
-            <input type="text" name="name" placeholder="Enter Your Name" required><br>
-            <input type="text" name="usn" placeholder="Enter Your USN" required><br>
-            <button type="submit">View My Submissions</button>
-        </form>
-
-        <!-- Display Submissions -->
-        {% if submissions %}
-            <h4>Your Uploaded Files:</h4>
-            <div class="submissions">
-                <ul>
-                    {% for file in submissions %}
-                        <li>{{ file }}</li>
-                    {% endfor %}
-                </ul>
-            </div>
-        {% endif %}
-
-        <!-- Message Box Section -->
-        <h3>Submit Your Comment</h3>
-        <form action="/submit_comment" method="POST">
-            <textarea name="comment" rows="5" placeholder="Write your comments here" required></textarea><br>
-            <button type="submit">Submit Comment</button>
-        </form>
-
-        <!-- Student Corner Section -->
-        <div class="student-corner">
-            <h4>Student Corner</h4>
-            <p>Here you can access your submitted Notes, Assignments, Question Papers, and more.</p>
-            <ul>
-                <li><a href="#">Access Notes</a></li>
-                <li><a href="#">Access Assignments</a></li>
-                <li><a href="#">Access Question Papers</a></li>
-            </ul>
-        </div>
-
-        <!-- Footer -->
-        <div class="footer">
-            <p>&copy; 2025 NLP Portal | Designed by Rajesh</p>
-        </div>
+        <h3>View Uploaded Notes and Assignments</h3>
+        <a href="{{ url_for('view_uploads') }}"><button>View Submissions</button></a>
     </div>
 </body>
 </html>
