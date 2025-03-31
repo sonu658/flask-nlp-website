@@ -1,0 +1,73 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Container for all content */
+.container {
+    max-width: 600px;
+    margin: auto;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* Headings */
+h1 {
+    font-size: 28px;
+    margin-bottom: 5px;
+}
+
+h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+/* Upload section */
+.upload-section {
+    margin-bottom: 20px;
+}
+
+input[type="file"] {
+    padding: 5px;
+    margin: 10px 0;
+}
+
+button {
+    background-color: #ff9800;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #e68900;
+}
+
+/* File list */
+.files-section ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.files-section li {
+    background: rgba(255, 255, 255, 0.3);
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.files-section a {
+    color: white;
+    text-decoration: none;
+}
+
+.files-section a:hover {
+    text-decoration: underline;
+}

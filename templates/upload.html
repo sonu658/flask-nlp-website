@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Natural Language Processing - BAI601</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Natural Language Processing</h1>
+        <h2>Subject Code: BAI601</h2>
+
+        <div class="upload-section">
+            <h3>Upload Your Notes</h3>
+            <form action="/upload" method="post" enctype="multipart/form-data">
+                <input type="file" name="file" required>
+                <button type="submit">Upload</button>
+            </form>
+        </div>
+
+        <div class="files-section">
+            <h3>Available Notes</h3>
+            <ul>
+                {% for file in files %}
+                    <li><a href="{{ url_for('uploaded_file', filename=file) }}">{{ file }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
