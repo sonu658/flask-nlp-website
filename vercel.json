@@ -1,0 +1,14 @@
+{
+  "builds": [
+    {
+      "src": "app.py",  // The main file to run your app
+      "use": "@vercel/python"  // Tells Vercel to use Python to run the app
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",  // Matches all routes
+      "dest": "app.py"  // All requests are forwarded to the app.py file
+    }
+  ]
+}
